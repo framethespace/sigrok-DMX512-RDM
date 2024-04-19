@@ -1,5 +1,5 @@
 # sigrok-DMX512-RDM for DSview & Sigrok
-A DMX512 decoder fork to support RDM decoding
+A E1.20 RDM decoder based on DMX512 decoder.
 
 It was made for DSview but I don't see why it would not be compatible with Sigrok (untested).
 
