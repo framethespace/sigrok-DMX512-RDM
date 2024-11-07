@@ -3,8 +3,8 @@
 rdm_pid_list = {
     # Category – Network Management
     '0x0001': 'DISC_UNIQUE_BRANCH',
-    '0x0003': 'DISC_MUTE',
-    '0x0002': 'DISC_UN_MUTE',
+    '0x0002': 'DISC_MUTE',
+    '0x0003': 'DISC_UN_MUTE',
     '0x0010': 'PROXIED_DEVICES',
     '0x0011': 'PROXIED_DEVICE_COUNT',
     '0x0015': 'COMMS_STATUS',
