@@ -233,7 +233,7 @@ class Decoder(srd.Decoder):
 
                         uuidrcv6 = str("0x{:02x}".format(self.byte))[2:]
 
-                        fulluuid = uuidrcv1 + uuidrcv2 + uuidrcv3 + uuidrcv4 + uuidrcv5 + uuidrcv6
+                        fulluuid = uuidrcv1 + uuidrcv2 + ':' + uuidrcv3 + uuidrcv4 + uuidrcv5 + uuidrcv6
 
                         uuid = uuidrcv1 + uuidrcv2
                         uuidmanu = str(uuid).upper()
@@ -276,7 +276,7 @@ class Decoder(srd.Decoder):
 
                         uuidsend6 = str("0x{:02x}".format(self.byte))[2:]
 
-                        fulluuid2 = uuidsend1 + uuidsend2 + uuidsend3 + uuidsend4 + uuidsend5 + uuidsend6
+                        fulluuid2 = uuidsend1 + uuidsend2 + ':' + uuidsend3 + uuidsend4 + uuidsend5 + uuidsend6
 
                         uuid2 = uuidsend1 + uuidsend2
                         uuidmanu2 = str(uuid2).upper()
