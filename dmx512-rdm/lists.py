@@ -65,7 +65,7 @@ rdm_pid_list = {
     '0x1031': 'PRESET_PLAYBACK',
 }
 
-esta_manufracturers_id = { 
+esta_manufacturer_ids = {
     '0000': 'ESTA',
     '0000': 'PLASA',
     '0001': 'GEE',

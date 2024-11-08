@@ -80,7 +80,7 @@ class Decoder(srd.Decoder):
         ('rdmpid', 'RDM Parameter ID'), # 21
         ('rdmpdl', 'RDM Parameter Data Length'), # 22
         ('rdmpidval', 'RDM PID value'), # 23
-        ('manufracturer', 'Manufracturer'), # 24
+        ('manufacturer', 'manufacturer'), # 24
         ('cdmcont', 'RDM content'), # 25
     )
     annotation_rows = (
@@ -233,14 +233,14 @@ class Decoder(srd.Decoder):
 
                         uuidrcv6 = str("0x{:02x}".format(self.byte))[2:]
 
-                        fulluuid = uuidrcv1 + uuidrcv2 + uuidrcv3 + uuidrcv4 + uuidrcv5 + uuidrcv6
+                        fulluuid = uuidrcv1 + uuidrcv2 + ':' + uuidrcv3 + uuidrcv4 + uuidrcv5 + uuidrcv6
 
                         uuid = uuidrcv1 + uuidrcv2
-                        uuidmanu = str(uuid)
-                        manufracturer = esta_manufracturers_id.get(uuidmanu, "NOT FOUND")
+                        uuidmanu = str(uuid).upper()
+                        manufacturer = esta_manufacturer_ids.get(uuidmanu, "UNKNOWN")
 
                         # Decodes and checks the UID library in lists
-                        self.put(self.run_start - 65 * self.skip_per_bit, bit_end + 0 * self.skip_per_bit , self.out_ann, [24, [ str(manufracturer) + ' / ' + str(fulluuid) ]])
+                        self.put(self.run_start - 65 * self.skip_per_bit, bit_end + 0 * self.skip_per_bit , self.out_ann, [24, [ str(fulluuid) + ' (' + str(manufacturer) + ')' ]])
 
 
                         # RDM Source UUID
@@ -254,11 +254,11 @@ class Decoder(srd.Decoder):
                         uuidsend2 =str("0x{:02x}".format(self.byte))[2:]
 
                         # uuid2 = uuidsend1 + uuidsend2
-                        # uuidmanu2 = str(uuid2)
-                        # manufracturer2 = esta_manufracturers_id.get(uuidmanu2, "NOT FOUND")
+                        # uuidmanu2 = str(uuid2).upper()
+                        # manufacturer2 = esta_manufacturer_ids.get(uuidmanu2, "UNKNOWN")
 
                         # # Decodes and checks the UID library in lists 
-                        # self.put(self.run_start - 13 * self.skip_per_bit, bit_end + 52 * self.skip_per_bit , self.out_ann, [24, [ str(manufracturer2) ]])
+                        # self.put(self.run_start - 13 * self.skip_per_bit, bit_end + 52 * self.skip_per_bit , self.out_ann, [24, [ str(manufacturer2) ]])
 
                     elif self.channel == 11 and isrdm == 1:
 
@@ -276,14 +276,14 @@ class Decoder(srd.Decoder):
 
                         uuidsend6 = str("0x{:02x}".format(self.byte))[2:]
 
-                        fulluuid2 = uuidsend1 + uuidsend2 + uuidsend3 + uuidsend4 + uuidsend5 + uuidsend6
+                        fulluuid2 = uuidsend1 + uuidsend2 + ':' + uuidsend3 + uuidsend4 + uuidsend5 + uuidsend6
 
                         uuid2 = uuidsend1 + uuidsend2
-                        uuidmanu2 = str(uuid2)
-                        manufracturer2 = esta_manufracturers_id.get(uuidmanu2, "NOT FOUND")
+                        uuidmanu2 = str(uuid2).upper()
+                        manufacturer2 = esta_manufacturer_ids.get(uuidmanu2, "UNKNOWN")
 
                         # Decodes and checks the UID library in lists
-                        self.put(self.run_start - 65 * self.skip_per_bit, bit_end + 0 * self.skip_per_bit , self.out_ann, [24, [ str(manufracturer2) + ' / ' + str(fulluuid2) ]])
+                        self.put(self.run_start - 65 * self.skip_per_bit, bit_end + 0 * self.skip_per_bit , self.out_ann, [24, [ str(fulluuid2) + ' (' + str(manufacturer2) + ')' ]])
 
 
                     # RDM Transaction Number
