@@ -208,7 +208,7 @@ class Decoder(srd.Decoder):
                     
                     elif self.channel == 3 and isrdm == 1:
 
-                        # RDM Desti9nation UUID
+                        # RDM Destination UUID
                         self.put(self.run_start, bit_end + 65 * self.skip_per_bit , self.out_ann, [15, ['RDM Destination UUID']])
 
                         uuidrcv1 = str("0x{:02x}".format(self.byte))[2:]
@@ -325,14 +325,11 @@ class Decoder(srd.Decoder):
                     else:
                         self.put(self.run_start, bit_end, self.out_ann, [6, ['Channel ' + str(self.channel)]]) # else, print the channel walue
                     # self.put(self.run_start, bit_end, self.out_ann, d)
-                    
+
+                    # Annotate the byte value as CAPITAL HEX
                     self.put(self.run_start + self.skip_per_bit,
                         bit_end - 2 * self.skip_per_bit,
-                        self.out_ann, [9, [str(self.byte) + ' / ' + \
-                        str(hex(self.byte)) ]]) # Converts the bytes to string then to HEX
-                    
-                     # Converts the bytes to string then to HEX
-
+                        self.out_ann, [9, [ "{:02X}".format(self.byte) ]])
 
 
                     # Continue by scanning the IFT.
